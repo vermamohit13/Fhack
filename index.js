@@ -127,6 +127,9 @@ app.post("/", (req,res) => {
 app.get("/suggest", (req, res) =>{
     res.render("suggest");
 });
+app.get("/connect", (req, res) =>{
+    res.render("Connect");
+});
 app.listen(port, (err) => {
     if (err) throw err;
     console.log(`Connection Established!! http://localhost:${port}`);
