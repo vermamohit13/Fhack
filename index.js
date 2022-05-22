@@ -1,8 +1,7 @@
 const express = require("express");
 const port = process.env.PORT || 5000;
 const mongoose = require("mongoose");
-var fs = require('fs'); 
-var parse = require('csv-parse');
+const {spawn} = require('child_process');
 // const connectDB = require("./config/db");
 // var url = require("url");
 
@@ -37,10 +36,34 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/static"));
 app.use("/images", express.static(__dirname + "static/images"));
 
-
-
 app.get("/", (req, res) =>{
-    res.render("home");
+    const python = spawn('python', ['face.py']);
+    const python3 = spawn('python3', ['sound.py']);
+    // collect data from script
+    firstData = ""
+    python.stdout.on('data', function (data) {
+        console.log('Pipe data from python script ...');
+        firstData = data.toString();
+        console.log("h1");
+        console.log(firstData);
+    });
+    // in close event we are sure that stream from child process is closed
+    python.on('close', (code) => {
+        console.log(`child process close all stdio with code ${code}`);
+        // send data to browser
+    });
+    var secondData = ""
+    python3.stdout.on('data', function (data) {
+        console.log('Pipe data from python3 script ...');
+        secondData = data.toString();
+        console.log("h2");
+        console.log(secondData);
+    });
+    // in close event we are sure that stream from child process is closed
+    python3.on('close', (code) => {
+        console.log(`child process close all stdio with code ${code}`);
+        // send data to browser
+    });
 });
 app.post("/", (req,res) => {
    var res = { table:[]};
