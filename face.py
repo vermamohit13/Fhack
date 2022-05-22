@@ -3,7 +3,7 @@ from deepface import DeepFace
 
 cam = cv2.VideoCapture(0)
 
-cv2.namedWindow("test")
+cv2.namedWindow("space:Capture | esc:Close")
 
 
 while True:

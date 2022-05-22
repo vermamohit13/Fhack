@@ -31,7 +31,7 @@ model = pickle.load(open("model.sav", 'rb'))
 recognizer = sr.Recognizer()
 with sr.Microphone() as source:
     print('Clearing background noise...')
-    recognizer.adjust_for_ambient_noise(source, duration=1)
+    recognizer.adjust_for_ambient_noise(source, duration=2)
     print('Waiting for your message...')
     recordedaudio = recognizer.listen(source)
     print(recordedaudio)
