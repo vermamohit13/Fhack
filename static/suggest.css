@@ -1,38 +1,266 @@
-body{
-	margin:0;
-	padding:0;
-	font-family:"arial",heletica,sans-serif;
-	font-size:12px;
-    background: #2980b9 url('https://static.tumblr.com/03fbbc566b081016810402488936fbae/pqpk3dn/MRSmlzpj3/tumblr_static_bg3.png') repeat 0 0;
-	-webkit-animation: 10s linear 0s normal none infinite animate;
-	-moz-animation: 10s linear 0s normal none infinite animate;
-	-ms-animation: 10s linear 0s normal none infinite animate;
-	-o-animation: 10s linear 0s normal none infinite animate;
-	animation: 10s linear 0s normal none infinite animate;
- 
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin:0; padding:0;
 }
- 
-@-webkit-keyframes animate {
-	from {background-position:0 0;}
-	to {background-position: 500px 0;}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background:  radial-gradient(circle at center, #48448C 0, #1E3A63 100%);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Helvetica Neue", sans-serif;
+  line-height: 1;
 }
- 
-@-moz-keyframes animate {
-	from {background-position:0 0;}
-	to {background-position: 500px 0;}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #48448C;
+  animation: color-breathe 10s ease-in-out alternate infinite;
 }
- 
-@-ms-keyframes animate {
-	from {background-position:0 0;}
-	to {background-position: 500px 0;}
+
+body::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(41,71,107,0) 0, #1E3A63 100%);
+  }
+
+.blob {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  width: 28vw;
+  height: 28vw;
+  background: #5A90B2;
+  border-radius: 100% 95% 93% 90% /
+    90% 93% 98% 100%;
+  animation: wobble 24s alternate infinite,
+  breathe 10s ease-in-out alternate infinite;
 }
- 
-@-o-keyframes animate {
-	from {background-position:0 0;}
-	to {background-position: 500px 0;}
+  .blob::before,
+  .blob::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    opacity: 0.1;
+    background: #5A90B2;
+    border-radius:
+      100% 95% 93% 90% /
+      90% 93% 98% 100%;
+    animation:
+      wobble 24s alternate infinite,
+      breathe 10s ease-in-out alternate infinite;
+  }
+
+  .blob::before {
+    width: 38vw;
+    height: 38vw;
+    top: -3vw;
+    left: -5vw;
+    transform: translateY(0);
+  }
+
+  .blob::after {
+    width: 34vw;
+    height: 34vw;
+    right: -3vw;
+    bottom: -4vw;
+    transform: translateY(0);
+  }
+
+  .blob>h1 {
+    font-size: 4vw;
+    font-weight: 100;
+    color: #F0F4F7;
+    text-transform: lowercase;
+    padding-bottom: .3vw;
+    z-index: 100;
+    animation:
+      breathe 10s ease-in-out alternate infinite,
+      text-breathe 10s ease-in-out alternate infinite;
+  }
+
+
+
+@keyframes wobble {
+  50% {
+    border-radius: 90% 94% 98% 100% /
+                   100% 98% 94% 90%;
+  }
+  100% {
+    border-radius: 100% 98% 94% 90% /
+                   90% 94% 98% 100%;
+  }
 }
- 
-@keyframes animate {
-	from {background-position:0 0;}
-	to {background-position: 500px 0;}
+
+@keyframes breathe {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  38% {
+    transform: translateY(-8%) scale(1.05);
+  }
+  50% {
+    transform: translateY(-8%) scale(1.055);
+  }
+  65% {
+    transform: translateY(-8%) scale(1.05);
+  }
+  95% {
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes text-breathe {
+  0% {
+    letter-spacing: 0;
+    opacity: .8;
+  }
+  35% {
+    letter-spacing: 0.05em;
+    opacity: 1;
+  }
+  45% {
+    letter-spacing: 0.05em;
+    opacity: 1;
+  }
+  95% {
+    letter-spacing: 0;
+    opacity: .8;
+  }
+  100% {
+    letter-spacing: 0;
+    opacity: .8;
+  }
+}
+
+@keyframes color-breathe {
+  0% {
+    background: #48448C;
+  }
+  33% {
+    background: #5477A6;
+  }
+  66% {
+    background: #5477A6;
+  }
+  100% {
+    background: #48448C;
+  }
+}
+.nav-toggle1 {
+    font-size:1em;
+    width:6em;
+    height:6em;
+    padding-top: 70px;
+  color: #1E3A63;
+    background:rgba(255,255,255,0);
+    border:none;
+    display:inline-block;
+    cursor:pointer;
+    outline:none;
+    position:relative;
+}
+.nav-toggle2 {
+    font-size:1em;
+    width:6em;
+    height:6em;
+    padding-top: 70px;
+  color: #1E3A63;
+    background:rgba(255,255,255,0);
+    border:none;
+    display:inline-block;
+    cursor:pointer;
+    outline:none;
+    position:relative;
+}
+.nav-toggle3 {
+    font-size:1em;
+    width:6em;
+    height:6em;
+    padding-top: 70px;
+  color: #1E3A63;
+    background:rgba(255,255,255,0);
+    border:none;
+    display:inline-block;
+    cursor:pointer;
+    outline:none;
+    position:relative;
+}
+.nav-toggle4 {
+    font-size:1em;
+    width:6em;
+    height:6em;
+    padding-top: 70px;
+  color: #1E3A63;
+    background:rgba(255,255,255,0);
+    border:none;
+    display:inline-block;
+    cursor:pointer;
+    outline:none;
+    position:relative;
+}
+.nav-toggle1::after {
+    content:'Connect';
+    height:6em;
+    width:6em;
+    background:#fff;
+    border:none;
+    border-radius:50%;
+    /*display:block;*/
+    position:absolute;
+   padding-top: 70px;
+  color: #1E3A63;
+    top:.5em;
+    left:.5em;
+}
+.nav-toggle2::after {
+    content:'Play';
+    height:6em;
+    width:6em;
+    background:#fff;
+    border:none;
+    border-radius:50%;
+    /*display:block;*/
+    position:absolute;
+   padding-top: 70px;
+  color: #1E3A63;
+    top:.5em;
+    left:.5em;
+}
+.nav-toggle3::after {
+    content:'Music';
+    height:6em;
+    width:6em;
+    background:#fff;
+    border:none;
+    border-radius:50%;
+    /*display:block;*/
+    position:absolute;
+padding-top: 70px;
+  color: #1E3A63;
+    top:.5em;
+    left:.5em;
+}
+.nav-toggle4::after {
+    content:'Meditate';
+    height:6em;
+    width:6em;
+    background:#fff;
+    border:none;
+    border-radius:50%;
+    /*display:block;*/
+    position:absolute;
+   padding-top: 70px;
+  color: #1E3A63;
+    top:.5em;
+    left:.5em;
 }
