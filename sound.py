@@ -34,20 +34,15 @@ def extract_feature(file_name, mfcc, chroma, mel):
 model = pickle.load(open("model.sav", 'rb'))
 recognizer = sr.Recognizer()
 with sr.Microphone() as source:
-    print('Clearing background noise...')
-    recognizer.adjust_for_ambient_noise(source, duration=2)
-    print('Waiting for your message...')
+    recognizer.adjust_for_ambient_noise(source, duration=1)
     recordedaudio = recognizer.listen(source)
     print(recordedaudio)
     with open('testing.wav','wb') as f:
         f.write(recordedaudio.get_wav_data())
-    print('Done recording..')
 
 
 try:
-    print('Printing the message..')
     text = recognizer.recognize_google(recordedaudio, language='en-US')
-    print('Your message:{}'.format(text))
 except Exception as ex:
     print(ex)
 
