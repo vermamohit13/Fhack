@@ -2,7 +2,9 @@
     margin: 0;
     padding: 0;
   }
-  
+  h1{
+    z-index:10;
+  }
   canvas {
     height: auto;
     background: radial-gradient(ellipse at bottom, #0c1116 0%, #161927 100%);
