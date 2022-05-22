@@ -26,8 +26,11 @@ const connectDB = async () => {
 };
 // connectDB();
 
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
 const app = express();
-
+const rs = require("./static/data.json");
 
 // set template view engine
 app.set("views", "./templates");
@@ -64,23 +67,62 @@ app.get("/", (req, res) =>{
     //     console.log(`child process close all stdio with code ${code}`);
     //     // send data to browser
     // });
+//     var res = { books:[] , music:[] ,exercise:[] ,games:[] };
+//    var x = getRandomInt(9);
+//    var z = 0;
+//    if(req.mood == "happy")
+//     z = 1;
+//   else if( req.mood == "neutral")
+//    z = 2;
+//   else if( req.mood == "angry")
+//    z = 3;
+//    z = z*10 + x;
+//    res[books] = data[books][z];
+//    res[music] = data[music][z];
+//    res[exercise] = data[exercise][z];
+//    res[games] = data[exercise][z];
+//    console.log(res[books]);
+//   console.log(data);
     res.render("home");
+    
 });
 app.post("/", (req,res) => {
-   var res = { table:[]};
-   var x = Math.floor((Math.random() * 10) + 1);
-    
+   var res = { books:[] , music:[] ,exercise:[] ,games:[] };
+//    var x = getRandomInt(9);
+//    var z = 0;
    if(req.mood == "sad")
-  {
-     res.table.push({})
-  }else if( req.mood == "happy")
-  {
-  }
-  else
-  {
-
-  }   
-    
+   { 
+    //    z = 1;
+    res[books] = "You Are a Badass by Jen Sincero";
+    res[music] = "Gonna Fly Now by Bill Conti";
+    res[exercise] = "Go for a Run for an All-Natural Mood Boost"
+    res[games] = "Kirby: Planet Robobot";
+   }
+  else if( req.mood == "happy")
+   {
+    //    z = 2;
+    res[books] = "The Art of Happiness by the Dalai Lama";
+    res[music] ="‘Let’s Go Crazy’ by Prince"
+    res[exercise] = "Three Walks a Week"
+    res[games] = "Saran Wrap Game"
+   }
+  else if( req.mood == "neutral")
+   {
+    //    z = 3;
+    res[books] ="The Price of Illusion by Joan Juliet Buck";
+    res[music] = "Happy — Pharrell Williams";
+    res[exercise] = "Aerobics";
+    res[games] = "Alto's Adventure";
+   }
+   else
+   {
+    res[books] = "Anger: Taming a Powerful Emotion – Gary Chapman";
+    res[music] = "'Betty' by Taylor Swift";
+    res[exercise] = "Deep Breathing";
+    res[games] = "Mad Dragon";
+   }
+   z = z*10 + x;
+   console.log(res[books]);
 });
 app.get("/suggest", (req, res) =>{
     res.render("suggest");
