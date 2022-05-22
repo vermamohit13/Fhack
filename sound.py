@@ -4,7 +4,11 @@ import soundfile
 import pickle
 import numpy as np
 import speech_recognition as sr
+import pyttsx3
 
+engine = pyttsx3.init()
+engine.say('hey there,say anything you want')
+engine.runAndWait()
 def extract_feature(file_name, mfcc, chroma, mel):
     with soundfile.SoundFile(file_name) as sound_file:
         X = sound_file.read(dtype="float32")
@@ -52,4 +56,6 @@ testit = []
 testit.append(feature)
 y = model.predict(testit)
 print(y)
-
+engine = pyttsx3.init()
+engine.say('Now press space to capture your image wheb the camera pops up')
+engine.runAndWait()

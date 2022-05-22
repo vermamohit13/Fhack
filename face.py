@@ -11,7 +11,7 @@ while True:
     if not result:
         print("failed to grab img")
         break
-    cv2.imshow("test", img)
+    cv2.imshow("space:Capture | esc:Close", img)
 
     k = cv2.waitKey(1)
     if k%256 == 27:

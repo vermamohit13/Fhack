@@ -48,50 +48,51 @@ app.post("/", (req, res) => {
     // collect data from script
     let firstData = "";
     let secondData = "";
-    python.stdout.on('data', function (data) {
-        console.log('Pipe data from python script ...');
-        firstData = data.toString();
-        console.log("firstData", firstData);
+    python3.stdout.on('data', function (data) {
+        console.log('Pipe data from python3 script ...');
+        secondData = data.toString();
+        console.log("secondData", secondData);
     });
-    // in close event we are sure that stream from child process is closed
-    python.on('close', (code) => {
+    python3.on('close', (code) => {
         console.log(`child process close all stdio with code ${code}`);
-        python3.stdout.on('data', function (data) {
-            console.log('Pipe data from python3 script ...');
-            secondData = data.toString();
-            console.log("secondData", secondData);
+        python.stdout.on('data', function (data) {
+            console.log('Pipe data from python script ...');
+            firstData = data.toString();
+            console.log("firstData", firstData);
         });
-        python3.on('close', (code) => {
+        // in close event we are sure that stream from child process is closed
+        python.on('close', (code) => {
             console.log(`child process close all stdio with code ${code}`);
+            
         });
     });
-    var array = { "books": [], "music": [], "exercise": [], "games": [] };
+    var data = { "books": [], "music": [], "exercise": [], "games": [] };
     console.log(firstData);
     if (firstData == "sad") {
-        array["books"] = "You Are a Badass by Jen Sincero";
-        array["music"] = "Gonna Fly Now by Bill Conti";
-        array["exercise"] = "Go for a Run for an All-Natural Mood Boost"
-        array["games"] = "Kirby: Planet Robobot";
+        data["books"] = "You Are a Badass by Jen Sincero";
+        data["music"] = "Gonna Fly Now by Bill Conti";
+        data["exercise"] = "Go for a Run for an All-Natural Mood Boost"
+        data["games"] = "Kirby: Planet Robobot";
     }
     else if (firstData == "happy") {
-        array["books"] = "The Art of Happiness by the Dalai Lama";
-        array["music"] = "'Let's Go Crazy' by Prince"
-        array["exercise"] = "Three Walks a Week"
-        array["games"] = "Saran Wrap Game"
+        data["books"] = "The Art of Happiness by the Dalai Lama";
+        data["music"] = "'Let's Go Crazy' by Prince"
+        data["exercise"] = "Three Walks a Week"
+        data["games"] = "Saran Wrap Game"
     }
     else if (firstData == "neutral") {
-        array["books"] = "The Price of Illusion by Joan Juliet Buck";
-        array["music"] = "Happy — Pharrell Williams";
-        array["exercise"] = "Aerobics";
-        array["games"] = "Alto's Adventure";
+        data["books"] = "The Price of Illusion by Joan Juliet Buck";
+        data["music"] = "Happy — Pharrell Williams";
+        data["exercise"] = "Aerobics";
+        data["games"] = "Alto's Adventure";
     }
     else {
-        array["books"] = "Anger: Taming a Powerful Emotion - Gary Chapman";
-        array["music"] = "'Betty' by Taylor Swift";
-        array["exercise"] = "Deep Breathing";
-        array["games"] = "Mad Dragon";
+        data["books"] = "Anger: Taming a Powerful Emotion - Gary Chapman";
+        data["music"] = "'Betty' by Taylor Swift";
+        data["exercise"] = "Deep Breathing";
+        data["games"] = "Mad Dragon";
     }
-    console.log(array["books"]);
+    res.render("reveal");
 });
 app.get("/suggest", (req, res) => {
     res.render("suggest");
@@ -110,6 +111,7 @@ app.get("/play", (req, res) =>{
 });
 app.get("/reveal", (req, res) =>{
     res.render("reveal");
+});
 app.listen(port, (err) => {
     if (err) throw err;
     console.log(`Connection Established!! http://localhost:${port}`);
