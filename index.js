@@ -99,6 +99,15 @@ app.get("/suggest", (req, res) => {
 app.get("/connect", (req, res) =>{
     res.render("Connect");
 });
+app.get("/meditate", (req, res) =>{
+    res.render("Meditate");
+});
+app.get("/music", (req, res) =>{
+    res.render("Music");
+});
+app.get("/play", (req, res) =>{
+    res.render("Play");
+});
 app.listen(port, (err) => {
     if (err) throw err;
     console.log(`Connection Established!! http://localhost:${port}`);
