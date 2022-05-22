@@ -126,7 +126,8 @@ app.get("/play", (req, res) =>{
     res.render("Play");
 });
 app.get("/reveal", (req, res) =>{
-    res.render("reveal");
+    let data = { "books": [], "music": [], "exercise": [], "games": [] };
+    res.render("reveal",{data : data});
 });
 app.listen(port, (err) => {
     if (err) throw err;

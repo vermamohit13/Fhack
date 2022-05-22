@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,17 +8,33 @@
     <link rel="stylesheet" type="text/css" href="reveal.css">
     <title>Document</title>
 </head>
+
 <body>
     <canvas id="starfield" width="3000" height="2000">
     </canvas>
-    <h1 style="color: white;">Reveal Mood
+    <div id="txt" style="color: white;">
+        <h1>Reveal Mood</h1>
         <br>
-        <%= data["books"] %> 
-        <%= data["music"] %>
-        <%= data["exercise"] %>
-        <%= data["games"] %>
-    </h1>
-    <a href='/suggest'>More Activities</a>
+        <h2>You can try reading this book:</h2>
+        <br>
+        <%= data["books"] %>
+            <br>
+            <h2>You can try listening to this music</h2>
+            <br>
+            <%= data["music"] %>
+                <br>
+                <h2>You can do this exercise</h2>
+                <br>
+                <%= data["exercise"] %>
+                    <br>
+                    <h2>You can play this game</h2>
+                    <br>
+                    <%= data["games"] %>
+                        <br>
+    </div>
+    <br>
+    <a href='/suggest' class="pill">More Activities</a>
     <script type="text/javascript" src="reveal.js"></script>
 </body>
+
 </html>
