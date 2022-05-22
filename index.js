@@ -108,6 +108,8 @@ app.get("/music", (req, res) =>{
 app.get("/play", (req, res) =>{
     res.render("Play");
 });
+app.get("/reveal", (req, res) =>{
+    res.render("reveal");
 app.listen(port, (err) => {
     if (err) throw err;
     console.log(`Connection Established!! http://localhost:${port}`);
