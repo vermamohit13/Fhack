@@ -41,9 +41,19 @@ app.get("/", (req, res) =>{
     res.render("home");
 });
 app.post("/", (req,res) => {
-    console.log("hi");
-    // do logic here
-    // acces data from req
+   var res = { table:[]};
+   var x = Math.floor((Math.random() * 10) + 1);
+   
+   if(req.mood == "sad")
+  {
+     res.table.push({})
+  }else if( req.mood == "happy")
+  {
+  }
+  else
+  {
+
+  }   
     
 });
 app.get("/suggest", (req, res) =>{
